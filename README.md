@@ -66,5 +66,5 @@ This write-up documents a blocked suspicious outbound activity via Firewall (Por
 - Monitor for any possible reocurrences
 - Plugins disabled to block JavaScript from executing automatically
 
-**Note** : Evidence from this incident was not preserved. This analysis is based on observations and technical understanding of Firewall and Network behaviour.
+**Note** : Evidence from this incident was not preserved. This analysis is based on observations and technical understanding of Firewall behaviour.
 
