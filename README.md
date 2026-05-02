@@ -38,6 +38,28 @@ This write-up documents a blocked suspicious outbound activity via Firewall (Por
       - Due to Portmaster Safing's DNS Blocking (uses filter lists to block requests to known tracker or malware domains), the outbound connections had been blocked.
       - Not only that, but Per-App Rules ( individual rules for each program to allow/block outbound traffic) and personalized rules have given essential help in blocking such connections.
 
+## MITRE ATT&CK MAPPING
+- Initial Compromise ( T1583.008 - Malvertising) : user accessed the fake domain ad.
+- Execution ( T1189 - Drive-By Compromise) : malicious ads are paid for and served through legitimate ad providers
+- Potential Command & Control communication (T1071.001 - Application Layer Protocol: Web Protocols, Blocked) : potential communication had been blocked.
+
+
 ## Response Actions
 - Verified any suspicious/new processes and their pid or any startup processes
+- Blocked all connections to the unknown IP
+- Quarantined and deleted the detected malware
+
+## Impact
+- No confirmed compromise
+- Potential C2 communication blocked with the help of a Firewall
+- Possible malware multiplicating stopped
+
+## Recommendations
+- DNS filtering/ reputation checks
+- Enable Ad-Blocker or Anti-Tracker
+- Monitor alerts on high volume connections to an unknown IP
+- Monitor for any possible reocurrences
+- Autplay/Plugins disabled to block JavaScript or Flash from executing automatically
+
+**Note** : Evidence from this incident was not preserved. This analysis is based on observations and technical understanding of Firewall and Network behaviour.
 
