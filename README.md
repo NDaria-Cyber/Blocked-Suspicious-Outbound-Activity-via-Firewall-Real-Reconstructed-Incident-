@@ -1,4 +1,4 @@
-# Blocked-Suspicious-Outbound-Activity-via-Firewall-(Real-Reconstructed-Incident)
+# Blocked Suspicious Outbound Activity via Firewall (Reconstructed Incident)
 
 **Note** : This incident is reconstructed from memory. No evidence was preserved, but indicators are presented at a high level, with assumptions clearly marked.
 
@@ -19,8 +19,7 @@ This write-up documents a blocked suspicious outbound activity via Firewall (Por
 
 **Technical Level** : the malware executed itself locally, but communication to C2 had been blocked. The local execution worked given that:
 - No Ad-Blocker or Anti-Trackers active on machine
-- Plugins enabled which allows JavaScript to execute automatically
-
+- Browser security controls (script restrictions, Ad-Blocker) were not activated, allowing potential malicious scripts or redirects to execute.
 
 ## Observations
 - Multiple connections in  'Time_Wait' state
@@ -29,12 +28,12 @@ This write-up documents a blocked suspicious outbound activity via Firewall (Por
 
 ## Analysis
 - The multiple connections in 'Time_Wait' suggest closed TCP connections that may indicate automated network activity, but requires correlation with process-level data.
-- No new obvious processes were observed in Task Manager /Startup, but process-level verification was limited.
+- No new obvious processes were observed in Task Manager /Startup. However, fileless or injected execution cannot be ruled out.
 
 ## Behaviour Analysis
 - After further analysis, multiple tools have detected malware on the machine (Trojan.PyengyLoader), which confirms that the malware executed itself locally and that it was active.
 - However, the firewall (Portmaster Safing) has successfully blocked the connections to the C2 since:
-      - In order for the communication to happen, a Web Protocol is needed ( a server). If between the infected machine and the attacker's machine a blockage or interruption occurs, the communication no longer persists and is ended.
+      - In order for the communication to happen, C2 relies on outbound connections to attacker-controled infrastructure ( commonly over HTTP/HTTPS). Blocking these connections, any command execution or data exfiltration is disrupted.
       - Due to Portmaster Safing's DNS Blocking (uses filter lists to block requests to known tracker or malware domains), the outbound connections had been blocked.
       - Not only that, but Per-App Rules ( individual rules for each program to allow/block outbound traffic) and personalized rules have given essential help in blocking such connections.
 
