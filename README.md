@@ -1,4 +1,4 @@
-# Blocked-Suspicious-Outbound-Activity-via-Firewall-Real-Reconstructed-Incident-
+# Blocked-Suspicious-Outbound-Activity-via-Firewall-(Real-Reconstructed-Incident)
 
 **Note** : This incident is reconstructed from memory. No evidence was preserved, but indicators are presented at a high level, with assumptions clearly marked.
 
