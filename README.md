@@ -33,9 +33,9 @@ This write-up documents a blocked suspicious outbound activity via Firewall (Por
 ## Behaviour Analysis
 - After further analysis, multiple tools have detected malware on the machine (Trojan.PyengyLoader), which confirms that the malware executed itself locally and that it was active.
 - However, the firewall (Portmaster Safing) has successfully blocked the connections to the C2 since:
-      - In order for the communication to happen, C2 relies on outbound connections to attacker-controled infrastructure ( commonly over HTTP/HTTPS). Blocking these connections, any command execution or data exfiltration is disrupted.
-      - Due to Portmaster Safing's DNS Blocking (uses filter lists to block requests to known tracker or malware domains), the outbound connections had been blocked.
-      - Not only that, but Per-App Rules ( individual rules for each program to allow/block outbound traffic) and personalized rules have given essential help in blocking such connections.
+- In order for the communication to happen, C2 relies on outbound connections to attacker-controled infrastructure ( commonly over HTTP/HTTPS). Blocking these connections, any command execution or data exfiltration is disrupted.
+- Due to Portmaster Safing's DNS Blocking (uses filter lists to block requests to known tracker or malware domains), the outbound connections had been blocked.
+- Not only that, but Per-App Rules ( individual rules for each program to allow/block outbound traffic) and personalized rules have given essential help in blocking such connections.
 
 ## MITRE ATT&CK MAPPING
 - Initial Compromise ( T1583.008 - Malvertising) : user accessed the fake domain ad.
