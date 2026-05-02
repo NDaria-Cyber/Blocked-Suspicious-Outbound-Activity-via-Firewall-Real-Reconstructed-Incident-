@@ -19,7 +19,7 @@ This write-up documents a blocked suspicious outbound activity via Firewall (Por
 
 **Technical Level** : the malware executed itself locally, but communication to C2 had been blocked. The local execution worked given that:
 - No Ad-Blocker or Anti-Trackers active on machine
-- Autoplay/Plugins enabled which allows JavaScript or Flash to to execute automatically
+- Plugins enabled which allows JavaScript to execute automatically
 
 
 ## Observations
@@ -28,8 +28,8 @@ This write-up documents a blocked suspicious outbound activity via Firewall (Por
 - No new processes appeared
 
 ## Analysis
-- The multiple connections in 'Time_Wait' suggest, but not confirme a potential C2 failed communication.
-- The lack of persistence or processes may indicate blocked connections to C2. The malware executed itself locally, but in order to follow orders and harm the machine, it needs confirmation from C2.
+- The multiple connections in 'Time_Wait' suggest closed TCP connections that may indicate automated network activity, but requires correlation with process-level data.
+- No new obvious processes were observed in Task Manager /Startup, but process-level verification was limited.
 
 ## Behaviour Analysis
 - After further analysis, multiple tools have detected malware on the machine (Trojan.PyengyLoader), which confirms that the malware executed itself locally and that it was active.
@@ -50,16 +50,21 @@ This write-up documents a blocked suspicious outbound activity via Firewall (Por
 - Quarantined and deleted the detected malware
 
 ## Impact
-- No confirmed compromise
+- Partial compromise confirmed : malware executed locally, but the C2 outbound connections were blocked likely before they could reach the server.
 - Potential C2 communication blocked with the help of a Firewall
 - Possible malware multiplicating stopped
+
+## Limitations
+- No packet capture (PCAP) available for the analysis
+- No process-level correlation (PID-connection)
+- No firewall logs exported
 
 ## Recommendations
 - DNS filtering/ reputation checks
 - Enable Ad-Blocker or Anti-Tracker
 - Monitor alerts on high volume connections to an unknown IP
 - Monitor for any possible reocurrences
-- Autplay/Plugins disabled to block JavaScript or Flash from executing automatically
+- Plugins disabled to block JavaScript from executing automatically
 
 **Note** : Evidence from this incident was not preserved. This analysis is based on observations and technical understanding of Firewall and Network behaviour.
 
