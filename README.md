@@ -28,10 +28,10 @@ This write-up documents a blocked suspicious outbound activity via Firewall (Por
 
 ## Analysis
 - The multiple connections in 'Time_Wait' suggest closed TCP connections that may indicate automated network activity, but requires correlation with process-level data.
-- No new obvious processes were observed in Task Manager /Startup. However, fileless or injected execution cannot be ruled out.
+- No new obvious processes were observed in Task Manager /Startup. However, fileless or injected execution cannot be ruled out. The detection of the file signature by Firewall implies execution occured in memory or via a legitimate process (Living off the Land).
 
 ## Behaviour Analysis
-- After further analysis, multiple tools have detected malware on the machine (Trojan.PyengyLoader), which confirms that the malware executed itself locally and that it was active.
+- After further analysis, multiple tools have detected malware on the machine (Windows Defender detected Trojan.Generic and Malwarebytes detected TrojanPyengy.Loader) which confirms that the malware was on user's machine.
 - However, the firewall (Portmaster Safing) has successfully blocked the connections to the C2 since:
 - In order for the communication to happen, C2 relies on outbound connections to attacker-controled infrastructure ( commonly over HTTP/HTTPS). Blocking these connections, any command execution or data exfiltration is disrupted.
 - Due to Portmaster Safing's DNS Blocking (uses filter lists to block requests to known tracker or malware domains), the outbound connections had been blocked.
@@ -60,8 +60,8 @@ This write-up documents a blocked suspicious outbound activity via Firewall (Por
 
 ## Recommendations
 - DNS filtering/ reputation checks
-- Enable Ad-Blocker or Anti-Tracker
-- Monitor alerts on high volume connections to an unknown IP
+- Implement browser isolation or enforce enterprise-grade ad-blocking via Group Policy to prevent drive-by downloads.
+- Create a SIEM alert rule for 'High volume of outbound connections to unknown IPs' or 'DNS queries to newly registered domains.'
 - Monitor for any possible reocurrences
 - Plugins disabled to block JavaScript from executing automatically
 
