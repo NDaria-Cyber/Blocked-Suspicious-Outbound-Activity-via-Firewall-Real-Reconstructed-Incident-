@@ -67,3 +67,5 @@ This write-up documents a blocked suspicious outbound activity via Firewall (Por
 
 **Note** : Evidence from this incident was not preserved. This analysis is based on observations and technical understanding of Firewall behaviour.
 
+ **Back to Main Portfolio** :<https://github.com/NDaria-Cyber/SOC-Analyst-Portfolio>
+
